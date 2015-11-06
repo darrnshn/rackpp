@@ -26,3 +26,4 @@ endmacro(add_unit_test)
 
 add_unit_test(version)
 add_unit_test(app)
+add_unit_test(config)
