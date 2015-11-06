@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8)
 
 project(puff)
 
-include_directories(include)
+include_directories(puff)
 
 add_subdirectory(external)
 
