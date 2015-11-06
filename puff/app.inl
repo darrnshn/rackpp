@@ -21,4 +21,11 @@ const puff::config& app::config() const
   return m_config;
 }
 
+template <class Callback>
+route<Callback>
+  app::get(const std::string& pattern, const Callback& callback)
+  {
+    return route<Callback>({ http::GET }, pattern, callback);
+  }
+
 }

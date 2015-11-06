@@ -20,3 +20,16 @@ TEST(App, CanSpecifyConfig)
 
   EXPECT_EQ(config, app.config());
 }
+
+TEST(App, CanCreateGetRouteToRoot)
+{
+  puff::simple_app app;
+  auto route = app.get("/", []() { return ""; });
+
+  EXPECT_TRUE(route.supports_verb(puff::http::GET));
+  EXPECT_FALSE(route.supports_verb(puff::http::POST));
+  EXPECT_TRUE(route.matches(puff::http::GET, "/"));
+  EXPECT_FALSE(route.matches(puff::http::GET, ""));
+  EXPECT_FALSE(route.matches(puff::http::GET, "/foo"));
+  EXPECT_FALSE(route.matches(puff::http::POST, "/"));
+}

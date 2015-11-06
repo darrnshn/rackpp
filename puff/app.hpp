@@ -1,6 +1,8 @@
 #pragma once
 
 #include "config.hpp"
+#include "http.hpp"
+#include "route.hpp"
 
 namespace puff
 {
@@ -14,6 +16,9 @@ public:
   const std::string& name() const;
 
   const puff::config& config() const;
+
+  template <class Callback>
+  route<Callback> get(const std::string& pattern, const Callback& callback);
 
 private:
   std::string m_name;
