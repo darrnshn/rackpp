@@ -28,8 +28,4 @@ TEST(App, CanCreateGetRouteToRoot)
 
   EXPECT_TRUE(route.supports_verb(puff::http::GET));
   EXPECT_FALSE(route.supports_verb(puff::http::POST));
-  EXPECT_TRUE(route.matches(puff::http::GET, "/"));
-  EXPECT_FALSE(route.matches(puff::http::GET, ""));
-  EXPECT_FALSE(route.matches(puff::http::GET, "/foo"));
-  EXPECT_FALSE(route.matches(puff::http::POST, "/"));
 }

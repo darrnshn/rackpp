@@ -2,10 +2,10 @@
 
 namespace puff
 {
-  enum class verbs
+  enum class verb
   {
     GET, POST, PUT, DELETE, PATCH, NUM_VERBS
   };
 
-  using http = verbs;
+  using http = verb;
 }

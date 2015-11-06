@@ -1,6 +1,7 @@
 #pragma once
 
 #include "http.hpp"
+#include "request.hpp"
 
 namespace puff
 {
@@ -21,10 +22,9 @@ public:
     return m_verbs.test(static_cast<std::size_t>(verb));
   }
 
-  bool matches(const http& verb, const std::string& path)
+  bool matches(const request& req)
   {
-    return supports_verb(verb) &&
-           m_pattern == path;
+    return supports_verb(req.verb()) && m_pattern == req.url();
   }
 
 private:
@@ -32,5 +32,13 @@ private:
   std::string m_pattern;
   Callback m_callback;
 };
+
+template <class Callback>
+  route<Callback>
+    make_route(const http& verb, const std::string& pattern,
+               const Callback& callback)
+{
+  return route<Callback>(verb, pattern, callback);
+}
 
 }
