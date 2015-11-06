@@ -1,5 +1,10 @@
 add_library(unit_test_main main.cpp)
 
-add_executable(run_test_version version.cpp)
-target_link_libraries(run_test_version gtest unit_test_main)
-add_test(NAME version COMMAND run_test_version)
+macro(add_unit_test test_name)
+  set(target_name run_test_${test_name})
+  add_executable(${target_name} ${test_name}.cpp)
+  target_link_libraries(${target_name} gtest unit_test_main)
+  add_test(NAME test_${test_name} COMMAND ${target_name})
+endmacro(add_unit_test)
+
+add_unit_test(version)
