@@ -1,5 +1,7 @@
 #pragma once
 
+#include <bitset>
+
 #include "http.hpp"
 #include "request.hpp"
 
