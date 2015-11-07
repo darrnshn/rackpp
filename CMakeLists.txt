@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 2.8)
 
-project(puff)
+project(rackpp)
 
-include_directories(puff)
+include_directories(rackpp)
 
 add_subdirectory(external)
 

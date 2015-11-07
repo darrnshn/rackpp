@@ -25,6 +25,4 @@ macro(add_unit_test test_name)
 endmacro(add_unit_test)
 
 add_unit_test(version)
-add_unit_test(app)
-add_unit_test(config)
-add_unit_test(route)
+add_unit_test(rack)

@@ -1,5 +1,5 @@
-# puff
+# rackpp
 
-[![Build Status](https://travis-ci.org/darrnshn/puff.svg?branch=master)](https://travis-ci.org/darrnshn/puff)
+[![Build Status](https://travis-ci.org/darrnshn/rackpp.svg?branch=master)](https://travis-ci.org/darrnshn/rackpp)
 
-Web microframework for C++
+A Rack-compliant implementation in C++ for building modular web apps.
