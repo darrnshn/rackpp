@@ -1,4 +1,4 @@
-#include "gtest/gtest.h"
+# include "gtest/gtest.h"
 #include "rack.hpp"
 
 struct MockHandler
@@ -15,18 +15,19 @@ struct MockHandler
 
 struct MockMiddleware
 {
-  MockMiddleware(const rackpp::app& app)
-    : app(app)
+  MockMiddleware(const rackpp::app& app, char exclaim = '!')
+    : app(app), exclaim(exclaim)
   {
   }
 
   rackpp::response operator()(rackpp::environment&& env) const
   {
     auto resp = app(std::move(env));
-    return {resp.status_code(), resp.headers(), resp.body() + "!"};
+    return {resp.status_code(), resp.headers(), resp.body() + exclaim};
   }
 
   const rackpp::app& app;
+  char exclaim;
 };
 
 struct MockApp
@@ -54,4 +55,14 @@ TEST(Rack, CanRunMiddleware)
 
   EXPECT_EQ(200, rack.handler().resp.status_code());
   EXPECT_EQ("hello world!", rack.handler().resp.body());
+}
+
+TEST(Rack, CanRunMiddlewareWithParameters)
+{
+  rackpp::rack<MockHandler> rack;
+  rack.use<MockMiddleware>('?');
+  rack.run<MockApp>();
+
+  EXPECT_EQ(200, rack.handler().resp.status_code());
+  EXPECT_EQ("hello world?", rack.handler().resp.body());
 }
